@@ -1,4 +1,4 @@
-# Quantifying global risk profiles of Mpox clade Ib importation
+# Characterising global risk profiles of Mpox clade Ib importation
 
 This repository contains the code for our paper.
 Since we cannot upload the flight volume data, this repository is for code checking purpose.

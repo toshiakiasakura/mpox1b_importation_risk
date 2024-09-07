@@ -16,9 +16,6 @@ N_KEN = 5.6433 * 1e7
 N_RWA = 1.4256 * 1e7
 N_5cnt = N_COD + N_BDI + N_UGA + N_KEN + N_RWA
 
-# Calculate from the UN and the WorldPop data.
-N_SK =  5.8704 * 1e6 # South Kivu, DRC
-
 """
 # Args
 - `m_out` : Daily travel volume (already scaled to daily).
@@ -98,23 +95,6 @@ function profile_likelihood_Ct(res, p_lis, O_lis)
         end
     end
     display("$Ct_m ($Ct_l, $Ct_h)")
-end
-
-function brute_Ct_estimate(p_lis::Vector, O_lis)
-    Ct_lis = 10:100:1e6 .|> Int64
-    ll = []
-    for Ct in Ct_lis
-        append!(ll, lklh_multi_country(Ct, p_lis, O_lis))
-    end
-    ind_min = argmax(ll)
-    C_mle = Ct_lis[ind_min] |> Int64
-
-    profile_ll = abs.(ll[ind_min] .- ll .- 1.96)
-    ind_l = argmin(profile_ll[1:ind_min])
-    ind_h = argmin(profile_ll[ind_min:end])
-    C_l = Ct_lis[ind_l]
-    C_h = Ct_lis[ind_h]
-    display("$C_mle ($C_l, $C_h)")
 end
 
 function add_pa_and_observed_flag(df::DataFrame, N_catch)
