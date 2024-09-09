@@ -19,9 +19,9 @@ generate_plot_case <- function(df, output) {
            ymin_upper = Lower + Median,
            ymax_upper = Lower + Median + Upper) %>%
     mutate(country = factor(country, levels = country[order(ymax_upper)]))
-
+  df$X <- seq(1,100,1)
   plot_stack_layer <- function(df, ymin_col, ymax_col, color, fill) {
-    geom_rect(aes(xmin = as.numeric(country) - 0.3, xmax = as.numeric(country) + 0.3,
+    geom_rect(aes(xmin = X - 0.3, xmax = X + 0.3,
                   ymin = !!sym(ymin_col), ymax = !!sym(ymax_col)),
               color = color, fill = fill, linewidth = 0.3)
   }
@@ -61,6 +61,7 @@ generate_plot_case <- function(df, output) {
 generate_plot_country <- function(df, output) {
   df <- df[order(df$casesbeforeimport.upper),]
   df <- df[1:100,]
+  df$X = seq(1,100,1)
   df <- df %>%
     mutate(Lower = countriesbeforeimport.lower,
            Median = countriesbeforeimport.median - countriesbeforeimport.lower,
@@ -74,7 +75,7 @@ generate_plot_country <- function(df, output) {
     mutate(country = factor(country, levels = country[order(ymax_upper)]))
 
   plot_stack_layer <- function(df, ymin_col, ymax_col, color, fill) {
-    geom_rect(aes(xmin = as.numeric(country) - 0.3, xmax = as.numeric(country) + 0.3,
+    geom_rect(aes(xmin = X - 0.3, xmax = X + 0.3,
                   ymin = !!sym(ymin_col), ymax = !!sym(ymax_col)),
               color = color, fill = fill, linewidth = 0.3)
   }
