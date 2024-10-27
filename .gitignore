@@ -1,6 +1,8 @@
 res/
 dt_pop/
 dt_flight/*.csv
+src/test.ipynb
+
 
 *.tif
 *.png

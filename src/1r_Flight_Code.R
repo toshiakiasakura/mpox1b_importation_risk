@@ -106,7 +106,7 @@ generate_plot_country <- function(df, output) {
 }
 
 #DRC Scenario 1---------------------------------------------------------------------------
-raw = read.csv("./dt_flight/Scenario1.csv")
+raw = read.csv("./dt_sim_data/Scenario.csv")
 
 data = data.frame(country=raw$Country,volume=raw$Volume)
 data = data[data$volume>0,]
