@@ -1,6 +1,6 @@
 res/
 dt_pop/
-dt_flight/
+dt_flight/*.csv
 
 *.tif
 *.png
